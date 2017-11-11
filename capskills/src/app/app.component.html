@@ -1,15 +1,22 @@
 
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:left">
-  <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
+<header>
+  <div class="entete">
+    <div class="entete_gauche" style="text-align:left">
+      <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+    </div>
+    <div class="entete_droite">
+        <p>Bienvenue sur {{title}}.<br>  Application d'évaluation et le<br> suivi des compétences.</p>
+    </div>
+  </div>
+</header>
 
-<h3>Bienvenue sur {{title}}</h3>
+
+<!-- Code HTML pour l'input de l'adresse mail -->
 
 <div style="text-align:center">
-  <form class="example-form">
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="Adresse mail" [formControl]="emailFormControl"
+  <form class="input-mail-form">
+    <mat-form-field class="input-mail-full-width">
+      <input matInput placeholder="Adresse Mail" [formControl]="emailFormControl"
              [errorStateMatcher]="matcher">
       <mat-hint><!--Errors appear instantly!--></mat-hint>
       <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
@@ -22,14 +29,21 @@
   </form>
 </div>
 
+<br/>
 
+<!-- Code HTML pour l'input du mot de passe -->
 
-
-<!--
-<div style="text-align:center" class="example-container">
+<div class="password-container">
   <mat-form-field>
-    <input matInput placeholder="Enter your email" [formControl]="email" required>
-    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    <input matInput placeholder="Mot de Passe" [type]="hide ? 'password' : 'text'">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
   </mat-form-field>
 </div>
--->
+
+
+
+<footer>
+  <div class="footer" class="row">
+      <div class="font_footer" class="col-sm-12"><i>Come and improve your career</i></div>
+  </div>
+</footer>

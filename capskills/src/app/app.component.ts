@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 
-
-//import { FormControl, Validators } from '@angular/forms';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -29,16 +27,6 @@ export class AppComponent {
 
   matcher = new MyErrorStateMatcher();
 
+  hide = true;
 
-
-
-/*
-  email = new FormControl('', [Validators.required, Validators.email]);
-
-  getErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-        this.email.hasError('email') ? 'Not a valid email' :
-            '';
-  }
-*/
 }
