@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 //Importer FormsModule permet d'utiliser les erreurs sur l'input de l'adresse mail
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
 
 import { AppComponent } from './app.component';
 
@@ -24,7 +25,8 @@ import { AppComponent } from './app.component';
     MatFormFieldModule,
     ReactiveFormsModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
