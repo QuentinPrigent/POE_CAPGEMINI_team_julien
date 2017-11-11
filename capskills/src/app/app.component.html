@@ -5,18 +5,18 @@
       <img width="300" src="../capgemini_logo.">
     </div>
     <div class="entete_droite">
-        <p>Bienvenue sur {{title}}.<br>  Application d'évaluation et le<br> suivi des compétences.</p>
+        <h1>Bienvenue sur {{title}}<br>  Application d'évaluation et de suivi des compétences</h1>
     </div>
   </div>
 </header>
 
 <br>
 
-<div class="password-input-container">
+<div class="input-container">
 
   <!-- Code HTML pour l'input de l'adresse mail -->
 
-  <mat-form-field class="input-mail-full-width">
+  <mat-form-field class="input-mail">
     <input matInput placeholder="Adresse Mail" [formControl]="emailFormControl"
            [errorStateMatcher]="matcher">
     <mat-hint><!--Errors appear instantly!--></mat-hint>
@@ -30,7 +30,7 @@
 
   <!-- Code HTML pour l'input du mot de passe -->
 
-  <mat-form-field>
+  <mat-form-field class="input-password">
     <input matInput placeholder="Mot de Passe" [type]="hide ? 'password' : 'text'">
     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
   </mat-form-field>
@@ -38,11 +38,7 @@
 
 </div>
 
-
 <button mat-raised-button>Se connecter</button>
-
-
-
 
 <footer>
   <div class="footer" class="row">
