@@ -26,7 +26,7 @@ public class DatabaseManager {
             + "		   password				VARCHAR (50), NOT NULL,"
             + "		   user_creation_date	DATETIME (50), NOT NULL,"
             + "		   user_id_1			INT,"
-            + "        PRIMARY KEY (id ),"
+            + "        PRIMARY KEY (user_id),"
             + "		   UNIQUE (user_creation_date)"
             + ")ENGINE=InnoDB;";
     

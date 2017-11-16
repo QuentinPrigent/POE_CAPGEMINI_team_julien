@@ -1,6 +1,8 @@
 package com.capgemini.capskills;
 
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.time.LocalDate;
 
 import com.mysql.jdbc.PreparedStatement;
 
@@ -15,10 +17,23 @@ public class UserDao extends AbstractDao{
     
     
     private void tune(PreparedStatement st, User user) throws SQLException {
+    	
+    	LocalDate user_creation_date = LocalDate.now();
+    	
     	st.setString(1, user.getFirstname());
     	st.setString(2, user.getLastname());
     	st.setString(3, user.getEmail());
     	st.setString(4, user.getPassword());
+    	st.setString(5, user.getCreationDateAsString());
+    }
+    
+    public void insert(User user) {
+    	try(
+    			Connection connection = createConnection();
+    			PreparedStatement statementInsert = connection.prepareStatement(SQL_INSERT_USER);
+    	) {
+    		
+    	}
     }
     
     /**
