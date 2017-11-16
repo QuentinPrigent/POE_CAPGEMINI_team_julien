@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component'; //Composant principal
 import { LoginComponent } from './login/login.component'; //Composant enfant
+import { AccueilComponent } from './accueil/accueil.component';
 
 //Implémente les composantes d'animations
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,10 +17,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 
+
 const routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },//Pas de segment.
   { path: 'login', component : LoginComponent }
-  // { path: 'home', component : HomeComponent },
+  { path: 'accueil', component : AccueilComponent },
   // { path: 'profil', component : ProfilComponent },
   // { path: 'skill_validation', component : SkillValidationComponent },
   // { path: 'skill_management', component : SkillManagementComponent },
@@ -31,7 +33,8 @@ const routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    AccueilComponent
   ],
   imports: [
     BrowserModule,
