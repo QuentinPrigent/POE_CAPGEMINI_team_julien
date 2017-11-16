@@ -1,0 +1,47 @@
+
+<header>
+  <div class="entete">
+    <div class="entete_gauche" style="text-align:left">
+<a href="https://www.capgemini.com/fr-fr/"><img src="https://www.capgemini.com/fr-fr/wp-content/themes/rebranding/assets/images/logo.svg" alt="Capgemini France" class="header__logo"></a>
+    </div>
+    <div class="entete_droite">
+        <h1>Bienvenue sur {{title}}<br>  Application d'évaluation et de suivi des compétences</h1>
+    </div>
+  </div>
+</header>
+
+<br>
+
+<div class="input-container">
+
+  <!-- Code HTML pour l'input de l'adresse mail -->
+
+  <mat-form-field class="input-mail">
+    <input matInput placeholder="Adresse Mail" [formControl]="emailFormControl"
+           [errorStateMatcher]="matcher">
+    <mat-hint><!--Errors appear instantly!--></mat-hint>
+    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+      Tapez une adresse mail valide
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Une adresse mail est <strong>requise</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Code HTML pour l'input du mot de passe -->
+
+  <mat-form-field class="input-password">
+    <input matInput placeholder="Mot de Passe" [type]="hide ? 'password' : 'text'">
+    <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon> -->
+  </mat-form-field>
+
+
+</div>
+
+<button mat-raised-button>Se connecter</button>
+
+<footer>
+  <div class="footer" class="row">
+      <div class="font_footer" class="col-sm-12"><i>Come and improve your career</i></div>
+  </div>
+</footer>

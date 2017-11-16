@@ -1,5 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+
+import { AppComponent } from './app.component'; //Composant principal
+import { LoginComponent } from './login/login.component'; //Composant enfant
 
 //Implémente les composantes d'animations
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,11 +16,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 
-import { AppComponent } from './app.component';
+const routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },//Pas de segment.
+  { path: 'login', component : LoginComponent }
+  // { path: 'home', component : HomeComponent },
+  // { path: 'profil', component : ProfilComponent },
+  // { path: 'skill_validation', component : SkillValidationComponent },
+  // { path: 'skill_management', component : SkillManagementComponent },
+  // { path: 'collaborator_management', component : CollaboratorManagementComponent },
+  // { path: 'settings', component : SettingsComponent },
+  // { path: '**', component : NotFoundComponent }//Segment introuvable dans les routes.
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +41,8 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     FormsModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule.forRoot(routes)//On passe au module de routage notre tableau de routes pour qu'il puisse appeller les components enfant en fonction de l'url.
   ],
   providers: [],
   bootstrap: [AppComponent]
