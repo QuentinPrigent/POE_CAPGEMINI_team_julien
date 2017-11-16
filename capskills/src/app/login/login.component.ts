@@ -18,7 +18,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./login.component.css'],
   // encapsulation: ViewEncapsulation.None
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent /*implements OnInit*/ {
 
   emailFormControl = new FormControl('', [
     Validators.required,
