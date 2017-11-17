@@ -30,19 +30,20 @@ public class DatabaseManager {
             + "email 				VARCHAR(255) NOT NULL,"
             + "user_password() 		VARCHAR(100),"
             + "user_creation_date	DATETIME NOT NULL,"
-            + "user_id_1			INT"
+            + "user_id_1			INT,"
+            + "UNIQUE (user_creation_date)"
             + ")ENGINE=innoDB";  
     
-    CREATE TABLE User(
-            user_id            int (11) Auto_increment  NOT NULL ,
-            user_firstname     Varchar (255) ,
-            user_lastname      Varchar (255) ,
-            email              Varchar (25) NOT NULL ,
-            user_password      Varchar (100) ,
-            user_creation_date Datetime NOT NULL ,
-            user_id_1          Int ,
-            PRIMARY KEY (user_id ) ,
-            UNIQUE (user_creation_date )
-    )ENGINE=InnoDB;  
-  
+//    CREATE TABLE User(
+//            user_id            int (11) Auto_increment  NOT NULL ,
+//            user_firstname     Varchar (255) ,
+//            user_lastname      Varchar (255) ,
+//            email              Varchar (25) NOT NULL ,
+//            user_password      Varchar (100) ,
+//            user_creation_date Datetime NOT NULL ,
+//            user_id_1          Int ,
+//            PRIMARY KEY (user_id ) ,
+//            UNIQUE (user_creation_date )
+//    )ENGINE=InnoDB;  
+//  
 }
