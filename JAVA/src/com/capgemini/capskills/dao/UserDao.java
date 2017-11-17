@@ -1,9 +1,10 @@
-package com.capgemini.capskills;
+package com.capgemini.capskills.dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import com.capgemini.capskills.entities.User;
 import com.mysql.jdbc.PreparedStatement;
 
 public class UserDao extends AbstractDao{

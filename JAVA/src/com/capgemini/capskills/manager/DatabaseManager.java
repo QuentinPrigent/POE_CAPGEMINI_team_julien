@@ -1,4 +1,4 @@
-package com.capgemini.capskills;
+package com.capgemini.capskills.manager;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,95 +6,43 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DatabaseManager {
-    protected static final String DRIVER      = "jdbc";
-    protected static final String SGBDR       = "mysql";
-    protected static final String HOSTNAME    = "localhost";
-    protected static final short  PORT        = 3306;
-    protected static final String DB_NAME     = "capskills_db";
-    protected static final String USER        = "root";
-    protected static final String PASSWD      = "";
-
-    /*
-     * Constant definition for SQL requests for User
-     */
+    /** URL to create/drop database. */
+    private static final String SGBD_URL = "jdbc:mysql://localhost:3306";
+    /** Name of used database. */
+    private static final String DATABASE_NAME = "capskills_db"; 
+    /** Connection URL to database to use (need it's created). */
+    private static final String DATABASE_URL = SGBD_URL + "/" + DATABASE_NAME;
     
-    private static final String SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + UserDao.getTableName() + "("
-            + "        user_id        		BIGINT NOT NULL AUTO_INCREMENT,"
-            + "        user_firstname   	VARCHAR (50) NOT NULL,"
-            + "        user_lastname 		VARCHAR(50) NOT NULL,"
-            + "        email     			VARCHAR (50) NOT NULL,"
-            + "		   password				VARCHAR (50), NOT NULL,"
-            + "		   user_creation_date	DATETIME (50), NOT NULL,"
-            + "		   user_id_1			INT,"
-            + "        PRIMARY KEY (user_id),"
-            + "		   UNIQUE (user_creation_date)"
-            + ")ENGINE=InnoDB;";
+    /** User use for the database connection (should be in separated file). */
+    private static final String USER = "root";  
+    /** User password use for the database connection (should be in separated file). */
+    private static final String PASSWORD = "";   
+	
+    /** The SQL request to drop the database. */
+    private static final String SQL_DROP_DB = "DROP DATABASE IF EXISTS " + DATABASE_NAME;
+    /** The SQL request to create the database. */
+    private static final String SQL_CREATE_DB = "CREATE DATABASE " + DATABASE_NAME;
     
-
-    private static final String SQL_DROP_DB = "DROP DATABASE IF EXISTS " + DB_NAME;
-    private static final String SQL_CREATE_DB = "CREATE DATABASE " + DB_NAME;
-
-    /**
-     * Creates the connection to database.
-     *
-     * @see DatabaseManager::DB_NAME
-     * @return
-     */
-    public static Connection createConnection() {
-        return createConnection(DB_NAME);
-    }
-
-    /**
-     * Creates the connection to database.
-     *
-     * @return
-     */
-    public static Connection createConnection(String dbName) {
-        Connection connection = null;
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.err.println("Where is your MySQL JDBC Driver?");
-            e.printStackTrace();
-            System.exit(0);
-        }
-
-        try {
-            String connectionString = (dbName == null
-                    ? String.format("%s:%s://%s:%d", DRIVER, SGBDR, HOSTNAME, PORT)
-                    : String.format("%s:%s://%s:%d/%s", DRIVER, SGBDR, HOSTNAME, PORT, dbName));
-            connection = DriverManager.getConnection(connectionString, USER, PASSWD);
-        } catch (SQLException e) {
-            System.err.println("Connection Failed! Check output console");
-            e.printStackTrace();
-            System.exit(0);
-        }
-
-        return connection;
-    }
-
-    public boolean rebuildDatabaseSchema() {
-        boolean success = true;
-
-        try (Connection connection = createConnection(null)) {
-            connection.prepareStatement(SQL_DROP_DB).execute();
-            connection.prepareStatement(SQL_CREATE_DB).execute();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            success = false;
-        }
-
-        try (
-            Connection connection = createConnection(DB_NAME);
-            PreparedStatement statementSchema = connection.prepareStatement(SQL_CREATE_TABLE);
-        ) {
-            statementSchema.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            success = false;
-        }
-
-        return success;
-    }
+    private static final String SQL_CREATE_USER = "CREATE TABLE " + DATABASE_NAME + ".user ("
+            + "user_id 				BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,"
+            + "user_firstname 		VARCHAR(255),"
+            + "user_lastname 		VARCHAR(255),"
+            + "email 				VARCHAR(255) NOT NULL,"
+            + "user_password() 		VARCHAR(100),"
+            + "user_creation_date	DATETIME NOT NULL,"
+            + "user_id_1			INT"
+            + ")ENGINE=innoDB";  
+    
+    CREATE TABLE User(
+            user_id            int (11) Auto_increment  NOT NULL ,
+            user_firstname     Varchar (255) ,
+            user_lastname      Varchar (255) ,
+            email              Varchar (25) NOT NULL ,
+            user_password      Varchar (100) ,
+            user_creation_date Datetime NOT NULL ,
+            user_id_1          Int ,
+            PRIMARY KEY (user_id ) ,
+            UNIQUE (user_creation_date )
+    )ENGINE=InnoDB;  
+  
 }
