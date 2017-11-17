@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import com.capgemini.capskills.DAO.UserDao;
+
 public class DatabaseManager {
     protected static final String DRIVER      = "jdbc";
     protected static final String SGBDR       = "mysql";

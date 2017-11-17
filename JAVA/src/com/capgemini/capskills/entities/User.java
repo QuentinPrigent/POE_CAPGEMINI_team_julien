@@ -1,4 +1,4 @@
-package com.capgemini.capskills;
+package com.capgemini.capskills.entities;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
