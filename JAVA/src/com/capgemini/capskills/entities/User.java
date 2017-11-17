@@ -1,21 +1,22 @@
 package com.capgemini.capskills.entities;
 
+import com.capgemini.capskills.entities.base.BaseEntity;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class User {
+public abstract class User extends BaseEntity {
 
 	/**
 	 * Class Attributes
 	 */
 	
-	private static final DateTimeFormatter dateFormatter
+	protected static final DateTimeFormatter dateFormatter
 		= DateTimeFormatter.ofPattern("yyy-MM-dd");
-	private String firstname;
-	private String lastname;
-	private String email;
-	private String password;
-	private LocalDate creationDate;
+	protected String firstname;
+	protected String lastname;
+	protected String email;
+	protected String password;
+	protected LocalDate creationDate;
 	
 	/**
 	 * The class constructor
