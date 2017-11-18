@@ -1,9 +1,11 @@
 package com.capgemini.capskills.entities;
 
+import com.capgemini.capskills.entities.base.BaseEntity;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class User {
+public class User extends BaseEntity {
 
 	/**
 	 * Class Attributes
@@ -16,30 +18,6 @@ public class User {
 	private String email;
 	private String password;
 	private LocalDate creationDate;
-	
-	/**
-	 * The class constructor
-	 */
-	
-	public User(){
-		
-	}
-	
-	/**
-	 * The second class constructor
-	 * @param firstname
-	 * @param lastname
-	 * @param email
-	 * @param password
-	 */
-	
-	public User(String firstname, String lastname, String email, String password){
-		this.firstname = firstname;
-		this.lastname= lastname;
-		this.email = email;
-		this.password = password;
-		
-	}
 	
 	/**
 	 * Getters and Setters
@@ -84,6 +62,17 @@ public class User {
 	
 	public String getCreationDateAsString() {
 		return this.creationDate.format(User.dateFormatter);
+	}
+	
+	public String getLogin() {
+		return this.firstname + "." + this.lastname;
+	}
+
+	@Override
+	public String toString() {
+		return "User [lastname=" + lastname + ", firstname=" + firstname
+				+ ", email=" + email + ", password=" + password + ", getId()="
+				+ getId() + "]";
 	}
 	
 }
