@@ -39,6 +39,9 @@ public class Application {
 //    	ProjectDAO daoP = new ProjectDAO();
     	User user;
 //    	Project project;
+    	
+    	
+    	
     	for (int i = 0; i < 5; i++) {
     		user = new User();
     		user.setEmail("coucou");
@@ -48,6 +51,14 @@ public class Application {
     		System.out.println(user);
 //    		System.out.println(project);
 		}
+   
+    		User user1;
+    		user1 = new User();
+    		user1.setFirstname("toto");
+    		daoU.insert(user1);
+    		
+    		daoU.delete(user1);
+    	
 
     	System.out.println("---------------------------------");
 

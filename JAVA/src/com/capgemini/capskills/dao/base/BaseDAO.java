@@ -11,6 +11,7 @@ import java.util.List;
 import com.capgemini.capskills.entities.base.BaseEntity;
 import com.capgemini.capskills.exceptions.DatabaseNotReadyException;
 import com.capgemini.capskills.manager.DatabaseManager;
+import com.mysql.fabric.xmlrpc.base.Data;
 
 public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 
@@ -48,6 +49,26 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 		return item;
 	}
 
+	
+	
+	
+	public void delete(K item) {
+		try {
+			PreparedStatement st = DatabaseManager.conn().prepareStatement(
+					"DELETE FROM " + this.tableName);// + " WHERE id = ?");
+			
+			
+			st.executeUpdate();
+
+		} catch (DatabaseNotReadyException | SQLException e) {
+			e.printStackTrace();
+		}
+	}	
+
+			
+	
+
+	
 	@Override
 	public List<K> select() {
 		List<K> result = new ArrayList<K>();
@@ -72,6 +93,8 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 
 		return result;
 	}
+	
+
 
 	protected abstract K retreiveDatas(ResultSet rs);
 

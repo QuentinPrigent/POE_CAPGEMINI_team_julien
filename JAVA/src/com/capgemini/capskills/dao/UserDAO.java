@@ -16,7 +16,7 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
 	@Override
 	public void delete(User item) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -27,7 +27,9 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
 
 	@Override
 	public User select(User item) {
-		// TODO Auto-generated method stub
+		
+		//SELECT * FROM user;
+		
 		return null;
 	}
 
@@ -44,6 +46,7 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
         UNIQUE (user_creation_date )
 
 	 */
+	
 	@Override
 	public String getCreateTable() {
 		String result = DatabaseManager.CREATE_TABLE[0] + this.tableName

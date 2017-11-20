@@ -11,8 +11,8 @@ public class User extends BaseEntity {
 	 * Class Attributes
 	 */
 	
-	private static final DateTimeFormatter dateFormatter
-		= DateTimeFormatter.ofPattern("yyy-MM-dd");
+//	private static final DateTimeFormatter dateFormatter
+//		= DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	private String firstname;
 	private String lastname;
 	private String email;
