@@ -20,9 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
 
 const routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },//Pas de segment.
-  { path: 'login', component : LoginComponent }
-  { path: 'accueil', component : AccueilComponent },
-  // { path: 'profil', component : ProfilComponent },
+  { path: 'login', component : LoginComponent },
+  { path: 'accueil', component : AccueilComponent }
   // { path: 'skill_validation', component : SkillValidationComponent },
   // { path: 'skill_management', component : SkillManagementComponent },
   // { path: 'collaborator_management', component : CollaboratorManagementComponent },

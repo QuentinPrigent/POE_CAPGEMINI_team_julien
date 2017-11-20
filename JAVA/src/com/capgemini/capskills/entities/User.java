@@ -1,46 +1,23 @@
 package com.capgemini.capskills.entities;
 
 import com.capgemini.capskills.entities.base.BaseEntity;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public abstract class User extends BaseEntity {
+public class User extends BaseEntity {
 
 	/**
 	 * Class Attributes
 	 */
 	
-	protected static final DateTimeFormatter dateFormatter
+	private static final DateTimeFormatter dateFormatter
 		= DateTimeFormatter.ofPattern("yyy-MM-dd");
-	protected String firstname;
-	protected String lastname;
-	protected String email;
-	protected String password;
-	protected LocalDate creationDate;
-	
-	/**
-	 * The class constructor
-	 */
-	
-	public User(){
-		
-	}
-	
-	/**
-	 * The second class constructor
-	 * @param firstname
-	 * @param lastname
-	 * @param email
-	 * @param password
-	 */
-	
-	public User(String firstname, String lastname, String email, String password){
-		this.firstname = firstname;
-		this.lastname= lastname;
-		this.email = email;
-		this.password = password;
-		
-	}
+	private String firstname;
+	private String lastname;
+	private String email;
+	private String password;
+	private LocalDate creationDate;
 	
 	/**
 	 * Getters and Setters
@@ -83,8 +60,19 @@ public abstract class User extends BaseEntity {
 		return creationDate;
 	}
 	
-	public String getCreationDateAsString() {
-		return this.creationDate.format(User.dateFormatter);
+//	public String getCreationDateAsString() {
+//		return this.creationDate.format(User.dateFormatter);
+//	}
+	
+	public String getLogin() {
+		return this.firstname + "." + this.lastname;
+	}
+
+	@Override
+	public String toString() {
+		return "User [lastname=" + lastname + ", firstname=" + firstname
+				+ ", email=" + email + ", password=" + password + ", getId()="
+				+ getId() + "]";
 	}
 	
 }

@@ -4,14 +4,14 @@ import java.util.List;
 
 import com.capgemini.capskills.entities.base.BaseEntity;
 
-//IBaseDAO est une interface commune quelque soit le projet
+public interface IBaseDAO <T extends BaseEntity> {
 
-public interface IBaseDAO {
+	public T insert(T item);
+	public void delete(T item);
+	public void update(T item);
+	public T select(T item);
+	public List<T> select();
 
-	public BaseEntity insert(BaseEntity item);
-	public void delete(BaseEntity item);
-	public void update(BaseEntity item);
-	public BaseEntity select(BaseEntity item);
-	public List<BaseEntity> select();
-	
+	public String getCreateTable();
 }
+
