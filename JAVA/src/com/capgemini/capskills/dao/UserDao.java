@@ -15,7 +15,7 @@ public class UserDao extends AbstractDao{
     + " (firstname, lastname, email, password) VALUES (?, ?, ?, ?)";   
     
     
-    
+ /*   
     
     private void tune(PreparedStatement st, User user) throws SQLException {
     	
@@ -36,7 +36,7 @@ public class UserDao extends AbstractDao{
     		
     	}
     }
-    
+    */
     /**
      * Return the name of the table
      * @return

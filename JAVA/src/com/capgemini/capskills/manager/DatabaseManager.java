@@ -5,6 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import com.capgemini.capskills.exception.DatabaseNotReadyException;
+
+
+
 public class DatabaseManager {
     /** URL to create/drop database. */
     private static final String SGBD_URL = "jdbc:mysql://localhost:3306";
@@ -23,26 +27,123 @@ public class DatabaseManager {
     /** The SQL request to create the database. */
     private static final String SQL_CREATE_DB = "CREATE DATABASE " + DATABASE_NAME;
     
-    private static final String SQL_CREATE_USER = "CREATE TABLE " + DATABASE_NAME + ".user ("
-            + "user_id 				BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,"
-            + "user_firstname 		VARCHAR(255),"
-            + "user_lastname 		VARCHAR(255),"
-            + "email 				VARCHAR(255) NOT NULL,"
-            + "user_password() 		VARCHAR(100),"
-            + "user_creation_date	DATETIME NOT NULL,"
-            + "user_id_1			INT"
+    private static final String SQL_CREATE_PROJECT = "CREATE TABLE " + DATABASE_NAME + ".project ("
+            + "project_id 				BIGINT AUTO_INCREMENT NOT NULL PRIMARY KEY,"
+            + "project_name 		VARCHAR(255),"
+            + "begin_date		    DATE,"
+            + "end_date		        DATE,"
+            + "comment 		        VARCHAR(100),"
+            + "user_id	            BIGINT NOT NULL"
             + ")ENGINE=innoDB";  
     
-    CREATE TABLE User(
-            user_id            int (11) Auto_increment  NOT NULL ,
-            user_firstname     Varchar (255) ,
-            user_lastname      Varchar (255) ,
-            email              Varchar (25) NOT NULL ,
-            user_password      Varchar (100) ,
-            user_creation_date Datetime NOT NULL ,
-            user_id_1          Int ,
-            PRIMARY KEY (user_id ) ,
-            UNIQUE (user_creation_date )
-    )ENGINE=InnoDB;  
-  
+    
+
+    /** The unique instance of class -- DP singleton. */
+    private static volatile DatabaseManager instance;
+    /** The connection instance keeps for program run. */
+    private Connection connection;
+
+    /**
+     * Private constructor -- DP singleton.
+     */
+    private DatabaseManager() {
+    }
+
+    /**
+     * Destroy then rebuild database.
+     * @param
+     */
+    public void prepareDb(boolean production) {
+        if (!production) {
+            try (
+                Connection        sgbd      = this.createConnectionSGBD();
+                PreparedStatement drop      = sgbd.prepareStatement(SQL_DROP_DB);
+                PreparedStatement create    = sgbd.prepareStatement(SQL_CREATE_DB);
+                PreparedStatement project = sgbd.prepareStatement(SQL_CREATE_PROJECT)
+            ) {
+                drop.executeUpdate();
+                create.executeUpdate();
+
+                project.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.exit(42);
+            }
+        }
+
+        // TODO DROP, CREATE, ...
+        this.connection = this.createConnectionDb();
+    }
+
+    /**
+     * The way to get the only one instance -- DP singleton.
+     * @return The only one instance.
+     */
+    public static DatabaseManager getInstance() {
+        if (DatabaseManager.instance == null) {
+            DatabaseManager.instance = new DatabaseManager();
+        }
+
+        return DatabaseManager.instance;
+    }
+
+    public static Connection conn() throws DatabaseNotReadyException {
+        return DatabaseManager.getInstance().getConnection();
+    }
+
+    public Connection getConnection() throws DatabaseNotReadyException {
+        if (this.connection == null) {
+            throw new DatabaseNotReadyException();
+        }
+
+        return this.connection;
+    }
+
+    /**
+     * Creates connection to SGBD without be connected to a database.
+     * @return
+     */
+    private Connection createConnectionSGBD() {
+        return this.createConnection(SGBD_URL);
+    }
+
+    /**
+     * Creates connection to the used database.
+     * @return
+     */
+    private Connection createConnectionDb() {
+        return this.createConnection(DATABASE_URL);
+    }
+
+    /**
+     * Creates the connection.
+     *
+     * Need initialization of database.
+     *
+     * @see DatabaseManager::prepareDb
+     * @return
+     */
+    private Connection createConnection(String url) {
+        Connection result = null;
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+
+            result = DriverManager.getConnection(url, USER, PASSWORD);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            System.exit(42);
+        }
+
+        return result;
+    }
 }
+
+
+
+
+
+
+
+
+
