@@ -11,13 +11,11 @@ public class User extends BaseEntity {
 	 * Class Attributes
 	 */
 	
-//	private static final DateTimeFormatter dateFormatter
-//		= DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	private String firstname;
 	private String lastname;
 	private String email;
 	private String password;
-	private LocalDate creationDate;
+
 	
 	/**
 	 * Getters and Setters
@@ -51,18 +49,6 @@ public class User extends BaseEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public void setCreationDate(LocalDate creationDate) {
-		this.creationDate = creationDate;
-	}
-	
-	public LocalDate getCreationDate() {
-		return creationDate;
-	}
-	
-//	public String getCreationDateAsString() {
-//		return this.creationDate.format(User.dateFormatter);
-//	}
 	
 	public String getLogin() {
 		return this.firstname + "." + this.lastname;
@@ -70,7 +56,7 @@ public class User extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "User [lastname=" + lastname + ", firstname=" + firstname
+		return "User [firstname=" + firstname + ", lastname=" + lastname
 				+ ", email=" + email + ", password=" + password + ", getId()="
 				+ getId() + "]";
 	}

@@ -52,13 +52,12 @@ public class Application {
 //    		System.out.println(project);
 		}
    
-    		User user1;
-    		user1 = new User();
-    		user1.setFirstname("toto");
-    		daoU.insert(user1);
-    		
-    		daoU.delete(user1);
+    	User user1 = new User();
+    	user1.setFirstname("toto");
+    	user1.setEmail("coucou");
+    	daoU.insert(user1);
     	
+//    	daoU.delete(user1);
 
     	System.out.println("---------------------------------");
 

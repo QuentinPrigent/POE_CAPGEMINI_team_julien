@@ -11,7 +11,6 @@ import java.util.List;
 import com.capgemini.capskills.entities.base.BaseEntity;
 import com.capgemini.capskills.exceptions.DatabaseNotReadyException;
 import com.capgemini.capskills.manager.DatabaseManager;
-import com.mysql.fabric.xmlrpc.base.Data;
 
 public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 
@@ -50,21 +49,37 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 	}
 
 	
+	//Ne marche pas...
 	
-	
+	@Override
 	public void delete(K item) {
 		try {
 			PreparedStatement st = DatabaseManager.conn().prepareStatement(
-					"DELETE FROM " + this.tableName);// + " WHERE id = ?");
-			
+					"DELETE FROM " + this.tableName + " WHERE user_id = " + item.getId());
 			
 			st.executeUpdate();
-
+			
 		} catch (DatabaseNotReadyException | SQLException e) {
 			e.printStackTrace();
 		}
 	}	
 
+//	UPDATE Customers
+//	SET ContactName='Juan'
+//	WHERE Country='Mexico';
+
+	@Override
+	public void update(K item) {
+		
+		try {
+			PreparedStatement st = DatabaseManager.conn().prepareStatement(
+				"UPDATE " + this.tableName + " SET " + this.questionMarks +" WHERE user_id = " + item.getId());
+			setPreparedStatement(st, item);
+			st.executeUpdate();
+		} catch(DatabaseNotReadyException | SQLException e) {
+			e.printStackTrace();
+		}
+	}
 			
 	
 
@@ -82,7 +97,7 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 				ResultSet rs = st.executeQuery();
 
 				while (rs.next()) {
-					result.add(retreiveDatas(rs));
+					result.add(retrieveDatas(rs));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -96,7 +111,7 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 	
 
 
-	protected abstract K retreiveDatas(ResultSet rs);
+	protected abstract K retrieveDatas(ResultSet rs);
 
 	protected abstract void setPreparedStatement(PreparedStatement st, K item);
 }
