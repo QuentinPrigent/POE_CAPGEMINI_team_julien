@@ -18,6 +18,17 @@ import { MatIconModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 
 
+
+//Import bibliothèques pour un tableau
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {HttpModule} from '@angular/http';
+import {CdkTableModule} from '@angular/cdk/table';
+import {
+  MatSortModule,
+  MatTableModule,
+  MatTabsModule
+} from '@angular/material';
+
 const routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },//Pas de segment.
   { path: 'login', component : LoginComponent },
@@ -44,6 +55,11 @@ const routes = [
     FormsModule,
     MatIconModule,
     MatButtonModule,
+    //Pour le tableau
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+
     RouterModule.forRoot(routes)//On passe au module de routage notre tableau de routes pour qu'il puisse appeller les components enfant en fonction de l'url.
   ],
   providers: [],

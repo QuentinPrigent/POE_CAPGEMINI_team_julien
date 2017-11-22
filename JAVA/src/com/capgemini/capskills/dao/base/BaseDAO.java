@@ -17,6 +17,8 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 	protected String questionMarks;
 
 	protected String tableName;
+	
+	protected String id;
 
 	public String getTableName() {
 		return tableName;
@@ -49,13 +51,11 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 	}
 
 	
-	//Ne marche pas...
-	
 	@Override
 	public void delete(K item) {
 		try {
 			PreparedStatement st = DatabaseManager.conn().prepareStatement(
-					"DELETE FROM " + this.tableName + " WHERE user_id = " + item.getId());
+					"DELETE FROM " + this.tableName + " WHERE " + this.id + " = " + item.getId());
 			
 			st.executeUpdate();
 			
@@ -68,22 +68,31 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 //	SET ContactName='Juan'
 //	WHERE Country='Mexico';
 
+//"UPDATE " + this.tableName + " SET " + "user_firstname = 'titi' , user_lastname = 'caca' WHERE user_id = 1");
+	
 	@Override
 	public void update(K item) {
 		
 		try {
 			PreparedStatement st = DatabaseManager.conn().prepareStatement(
-				"UPDATE " + this.tableName + " SET " + this.questionMarks +" WHERE user_id = " + item.getId());
-			setPreparedStatement(st, item);
+					"UPDATE " + this.tableName + " SET " + this.updateString());
+					
+			setPreparedStatementUpdate(st, item);	
+			
+			st.add("WHERE " + this.id + " = " + item.getId());
+			
+//			+ " WHERE " + this.id + " = " + item.getId());
+			
 			st.executeUpdate();
+			
 		} catch(DatabaseNotReadyException | SQLException e) {
 			e.printStackTrace();
 		}
 	}
 			
 	
+	abstract protected String updateString();
 
-	
 	@Override
 	public List<K> select() {
 		List<K> result = new ArrayList<K>();
@@ -114,4 +123,7 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 	protected abstract K retrieveDatas(ResultSet rs);
 
 	protected abstract void setPreparedStatement(PreparedStatement st, K item);
+
+	protected abstract void setPreparedStatementUpdate(PreparedStatement st, K item);
+
 }
