@@ -1,12 +1,12 @@
 package com.capgemini.capskills;
 
-import com.capgemini.capskills.entities.User;
+import com.capgemini.capskills.entities.Audit;
 
 public class Application {
 
 	public static void main(String[] args) {
-		User user = new User();
-		user.getEmail();
+		Audit audit = new Audit();
+		
 
 	}
 

@@ -1,49 +1,56 @@
 package com.capgemini.capskills.entities;
 
-import java.time.LocalDate;
+import com.capgemini.capskills.entities.Base.BaseEntity;
 
-public class Audit {
+public class Audit extends BaseEntity {
 	
-	private LocalDate dateAudit;
-	private LocalDate dateValidation;
-	private String targetGrade;
-	private String initialGrade;
-	private String collaborateGrade;
+
+	private int targetGrade;
+	private int initialGrade;
+	private int collaborateGrade;
+	private int userId;
+	private int skillId;
+	private int projectId;
 	
 	
 	
-	public LocalDate getDateAudit() {
-		return dateAudit;
+
+	public int getUserId() {
+		return userId;
 	}
-	public void setDateAudit(LocalDate dateAudit) {
-		this.dateAudit = dateAudit;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
-	public LocalDate getDateValidation() {
-		return dateValidation;
+	public int getSkillId() {
+		return skillId;
 	}
-	public void setDateValidation(LocalDate dateValidation) {
-		this.dateValidation = dateValidation;
+	public void setSkillId(int skillId) {
+		this.skillId = skillId;
 	}
-	public String getTargetGrade() {
+	public int getProjectId() {
+		return projectId;
+	}
+	public void setProjectId(int projectId) {
+		this.projectId = projectId;
+	}
+	public int getTargetGrade() {
 		return targetGrade;
 	}
-	public void setTargetGrade(String targetGrade) {
+	public void setTargetGrade(int targetGrade) {
 		this.targetGrade = targetGrade;
 	}
-	public String getInitialGrade() {
+	public int getInitialGrade() {
 		return initialGrade;
 	}
-	public void setInitialGrade(String initialGrade) {
+	public void setInitialGrade(int initialGrade) {
 		this.initialGrade = initialGrade;
 	}
-	public String getCollaborateGrade() {
+	public int getCollaborateGrade() {
 		return collaborateGrade;
 	}
-	public void setCollaborateGrade(String collaborateGrade) {
+	public void setCollaborateGrade(int collaborateGrade) {
 		this.collaborateGrade = collaborateGrade;
 	}
-	
-	
 	
 
 }
