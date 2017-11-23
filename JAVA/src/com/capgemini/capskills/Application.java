@@ -1,9 +1,12 @@
 package com.capgemini.capskills;
 
+import java.util.Arrays;
 import java.util.List;
 
+import com.capgemini.capskills.dao.SkillTypeDAO;
 //import com.capgemini.capskills.dao.ProjectDAO;
 import com.capgemini.capskills.dao.UserDAO;
+import com.capgemini.capskills.entities.SkillType;
 //import com.capgemini.capskills.entities.Project;
 import com.capgemini.capskills.entities.User;
 import com.capgemini.capskills.exceptions.DatabaseNotReadyException;
@@ -36,34 +39,35 @@ public class Application {
 //        dao.findAll().forEach(type -> System.out.println(type));
     	DatabaseManager.getInstance().prepareDb(PRODUCTION);
     	UserDAO daoU = new UserDAO();
+    	SkillTypeDAO daoS = new SkillTypeDAO();
 //    	ProjectDAO daoP = new ProjectDAO();
     	User user;
+    	SkillType skilltype;
 //    	Project project;
     	
     	
     	
-    	for (int i = 0; i < 5; i++) {
-    		user = new User();
-    		user.setEmail("coucou");
-    		daoU.insert(user);
+    	
+    	
+    	for (String name : Arrays.asList("jules", "quickos", "thibaut", "cécile")) {
+    		skilltype = new SkillType();
+    		skilltype.setName(name);
+    		daoS.insert(skilltype);
 //    		project = new Project();
 //    		daoP.insert(project);
-    		System.out.println(user);
+    		System.out.println(skilltype);
 //    		System.out.println(project);
 		}
    
-    	User user1 = new User();
-    	user1.setFirstname("toto");
-    	user1.setEmail("coucou");
-    	daoU.insert(user1);
     	
-//    	daoU.delete(user1);
 
     	System.out.println("---------------------------------");
 
     	List<User> users = daoU.select();
     	for (User user2 : users) {
 			System.out.println(user2);
+			
+			
 		}
     }
 }
