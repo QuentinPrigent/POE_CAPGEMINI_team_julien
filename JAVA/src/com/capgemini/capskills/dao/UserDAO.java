@@ -110,16 +110,5 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
 
 	}
 
-	@Override
-	protected void setPreparedStatementUpdate(PreparedStatement st, User item) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected String updateString() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
