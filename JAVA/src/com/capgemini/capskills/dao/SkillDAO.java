@@ -14,37 +14,25 @@ import com.capgemini.capskills.manager.DatabaseManager;
 public class SkillDAO extends BaseDAO<Skill> implements ISkillDAO {
 
 	@Override
-	public void delete(K item) {
-		// TODO Auto-generated method stub
+	public Skill select(Skill item) {
 
-	}
-
-	@Override
-	public void update(K item) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Skill select(K item) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
-
+	
 	/**
         skill_id            int (11) Auto_increment  NOT NULL ,
-        skill_name     Varchar (255) ,
+        skill_name     		Varchar (255) ,
         PRIMARY KEY (skill_id ) ,
 
-
 	 */
+	
 	@Override
 	public String getCreateTable() {
 		String result = DatabaseManager.CREATE_TABLE[0] + this.tableName
 				+ DatabaseManager.CREATE_TABLE[1]
-				+ "skill_id				INT (11) PRIMARY KEY AUTO_INCREMENT NOT NULL ,"
+				+ "skill_id			INT (11) PRIMARY KEY AUTO_INCREMENT NOT NULL ,"
 				+ "skill_name  		VARCHAR (255),"
+				+ "skill_type_id	INT"
 				+ DatabaseManager.CREATE_TABLE[2];
 		return result;
 	}
@@ -59,17 +47,18 @@ public class SkillDAO extends BaseDAO<Skill> implements ISkillDAO {
 		try {
 			st.setString(1, null);
 			st.setString(2, item.getName());
+			st.setString(3, null);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Override
-	protected Skill retreiveDatas(ResultSet rs) {
+	protected Skill retrieveDatas(ResultSet rs) {
 		Skill result = new Skill();
 
 		try {
-			result.setSkill_Id(rs.getDouble(1));
+			result.setId(rs.getDouble(1));
 			result.setName(rs.getString(2));
 
 		} catch (SQLException e) {
@@ -86,8 +75,28 @@ public class SkillDAO extends BaseDAO<Skill> implements ISkillDAO {
 	 */
 
 	public SkillDAO() {
-		this.tableName = "Skill";
-		this.questionMarks = "?,?";
-		this.id= Skill_Id;
+		this.tableName = "skill";
+		this.questionMarks = "?,?,?";
+		this.id = "skill_id";
 	}
+
+
+	@Override
+	protected String updateString() {
+		return "skill_name = ?,"
+				+ "skill_type_id = ?";
+	}
+
+	@Override
+	protected void setPreparedStatementUpdate(PreparedStatement st, Skill item) {
+		try {
+			st.setString(1, item.getName());
+			st.setString(2, null);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		
+	}
+
 }

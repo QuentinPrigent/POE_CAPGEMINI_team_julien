@@ -40,7 +40,7 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
 //		short i = 1;
 		try {
 //			if (item.getId() != null)  {
-				st.setString(1, null);
+			st.setString(1, null);
 //			}
 			st.setString(2, item.getFirstname());
 			st.setString(3, item.getLastname());
@@ -81,7 +81,6 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
 	public UserDAO() {
 		this.tableName = "user";
 		this.questionMarks = "?,?,?,?,?,?";
-
 		this.id = "user_id";
 	}
 

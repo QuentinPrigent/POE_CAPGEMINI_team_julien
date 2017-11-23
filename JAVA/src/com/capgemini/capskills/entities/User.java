@@ -2,9 +2,6 @@ package com.capgemini.capskills.entities;
 
 import com.capgemini.capskills.entities.base.BaseEntity;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 public class User extends BaseEntity {
 
 	/**

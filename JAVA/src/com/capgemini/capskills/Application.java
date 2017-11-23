@@ -2,8 +2,10 @@ package com.capgemini.capskills;
 
 import java.util.List;
 
+import com.capgemini.capskills.dao.SkillDAO;
 //import com.capgemini.capskills.dao.ProjectDAO;
 import com.capgemini.capskills.dao.UserDAO;
+import com.capgemini.capskills.entities.Skill;
 //import com.capgemini.capskills.entities.Project;
 import com.capgemini.capskills.entities.User;
 import com.capgemini.capskills.exceptions.DatabaseNotReadyException;
@@ -50,7 +52,7 @@ public class Application {
     	
     	daoU.update(user1);
     	
-    	InputManager.createUser();
+//    	InputManager.createUser();
 
 
     	System.out.println("---------------------------------");
@@ -59,6 +61,24 @@ public class Application {
     	for (User user2 : users) {
 			System.out.println(user2);
 		}
+    	
+    	
+    	Skill skill = new Skill();
+    	Skill skill1 = new Skill();
+    	
+    	skill.setName("hardcoooooooooooore");
+    	System.out.println(skill);
+    	
+    	SkillDAO daoS = new SkillDAO();
+    	
+    	daoS.insert(skill);
+    	
+    	skill1.setName("riri");
+    	
+    	daoS.insert(skill1);
+    	System.out.println(skill1.getId());
+    	
+    
     }
 
 }

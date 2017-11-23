@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import com.capgemini.capskills.dao.SkillDAO;
 //import com.capgemini.capskills.dao.ProjectDAO;
 import com.capgemini.capskills.dao.UserDAO;
 import com.capgemini.capskills.exceptions.DatabaseNotReadyException;
@@ -68,10 +69,13 @@ public class DatabaseManager {
 							sgbd.prepareStatement((new UserDAO()).getCreateTable());
 //					PreparedStatement projectTable =
 //							sgbd.prepareStatement((new ProjectDAO()).getCreateTable());
+					PreparedStatement skillTable = 
+							sgbd.prepareStatement((new SkillDAO()).getCreateTable());
 			) {
 				drop.executeUpdate();
 				create.executeUpdate();
 				userTable.executeUpdate();
+				skillTable.executeUpdate();
 //				projectTable.executeUpdate();
 
 			} catch (SQLException e) {
