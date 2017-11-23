@@ -8,6 +8,7 @@ import com.capgemini.capskills.dao.UserDAO;
 import com.capgemini.capskills.entities.User;
 import com.capgemini.capskills.exceptions.DatabaseNotReadyException;
 import com.capgemini.capskills.manager.DatabaseManager;
+import com.capgemini.capskills.manager.InputManager;
 
 public class Application {
     private static final boolean PRODUCTION = false;
@@ -45,6 +46,8 @@ public class Application {
     	user1.setFirstname("titi");
     	
     	daoU.update(user1);
+    	
+    	InputManager.createUser();
 
     	System.out.println("---------------------------------");
 

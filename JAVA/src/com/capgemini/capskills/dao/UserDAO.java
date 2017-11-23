@@ -12,19 +12,6 @@ import com.capgemini.capskills.manager.DatabaseManager;
 
 public class UserDAO extends BaseDAO<User> implements IUserDAO {
 
-//	@Override
-//	public void delete(User item) {
-//
-//	}
-	
-
-//	@Override
-//	public void update(User item) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-
-
 	@Override
 	public User select(User item) {
 		
@@ -41,7 +28,7 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
 				+ "user_lastname 		VARCHAR (255),"
 				+ "email     			VARCHAR (255)," 
 				+ "user_password  		VARCHAR	(100),"
-				+ "id_career_manager   	INT," 
+				+ "user_id_1		   	INT," 
 				+ "PRIMARY KEY (user_id)"
 				+ DatabaseManager.CREATE_TABLE[2];
 		return result;
@@ -100,9 +87,8 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
 				+ "user_lastname = ?,"
 				+ "email = ?,"
 				+ "user_password = ?,"
-				+ "id_career_manager = ?";
+				+ "user_id_1 = ?";
 	}
-
 
 
 	@Override
