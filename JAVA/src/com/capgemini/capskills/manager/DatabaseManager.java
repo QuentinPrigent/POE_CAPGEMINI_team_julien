@@ -18,7 +18,9 @@ public class DatabaseManager {
 	/** URL to create/drop database. */
 	private static final String SGBD_URL = "jdbc:mysql://localhost:3306";
 	/** Name of used database. */
+
 	public static final String DATABASE_NAME = "capskills";
+
 	/** Connection URL to database to use (need it's created). */
 	private static final String DATABASE_URL = SGBD_URL + "/" + DATABASE_NAME;
 

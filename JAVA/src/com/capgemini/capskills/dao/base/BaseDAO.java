@@ -22,6 +22,7 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 	
 	abstract protected String updateString();
 
+
 	public String getTableName() {
 		return tableName;
 	}
@@ -51,6 +52,7 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 		}
 		return item;
 	}
+
 
 	
 	@Override
@@ -104,7 +106,9 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 				ResultSet rs = st.executeQuery();
 
 				while (rs.next()) {
+
 					result.add(retrieveDatas(rs));
+
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -115,7 +119,6 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 
 		return result;
 	}
-	
 
 
 	protected abstract K retrieveDatas(ResultSet rs);
@@ -123,5 +126,6 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 	protected abstract void setPreparedStatement(PreparedStatement st, K item);
 	
 	protected abstract void setPreparedStatementUpdate(PreparedStatement st, K item);
+
 
 }

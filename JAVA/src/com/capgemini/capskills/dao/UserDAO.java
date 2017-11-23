@@ -3,6 +3,8 @@ package com.capgemini.capskills.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+
 
 import com.capgemini.capskills.dao.base.BaseDAO;
 import com.capgemini.capskills.entities.User;
@@ -18,7 +20,6 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
 		return null;
 	}
 
-	
 	@Override
 	public String getCreateTable() {
 		String result = DatabaseManager.CREATE_TABLE[0] + this.tableName
@@ -46,6 +47,7 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
 			st.setString(4, item.getEmail());
 			st.setString(5, item.getPassword());
 			st.setString(6, null);
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -53,6 +55,7 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
 
 	@Override
 	protected User retrieveDatas(ResultSet rs) {
+
 		User result = new User();
 
 		try {
@@ -78,6 +81,7 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
 	public UserDAO() {
 		this.tableName = "user";
 		this.questionMarks = "?,?,?,?,?,?";
+
 		this.id = "user_id";
 	}
 
@@ -104,5 +108,6 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
 			e.printStackTrace();
 		}	
 		
+
 	}
 }

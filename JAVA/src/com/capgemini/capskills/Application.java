@@ -8,6 +8,7 @@ import com.capgemini.capskills.dao.UserDAO;
 import com.capgemini.capskills.entities.User;
 import com.capgemini.capskills.exceptions.DatabaseNotReadyException;
 import com.capgemini.capskills.manager.DatabaseManager;
+
 import com.capgemini.capskills.manager.InputManager;
 
 public class Application {
@@ -27,10 +28,12 @@ public class Application {
 
     	User user;    	
     	
+
     	for (int i = 0; i < 5; i++) {
     		user = new User();
     		user.setEmail("coucou");
     		daoU.insert(user);
+
     		System.out.println(user);
 		}
    
@@ -49,6 +52,7 @@ public class Application {
     	
     	InputManager.createUser();
 
+
     	System.out.println("---------------------------------");
 
     	List<User> users = daoU.select();
@@ -56,4 +60,6 @@ public class Application {
 			System.out.println(user2);
 		}
     }
+
 }
+
