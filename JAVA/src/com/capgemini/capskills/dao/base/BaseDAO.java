@@ -19,6 +19,8 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 	protected String tableName;
 	
 	protected String id;
+	
+	abstract protected String updateString();
 
 	public String getTableName() {
 		return tableName;
@@ -75,13 +77,10 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 		
 		try {
 			PreparedStatement st = DatabaseManager.conn().prepareStatement(
-					"UPDATE " + this.tableName + " SET " + this.updateString());
+					"UPDATE " + this.tableName + " SET " + this.updateString() +
+					" WHERE " + this.id + " = " + item.getId());
 					
-			setPreparedStatementUpdate(st, item);	
-			
-			st.add("WHERE " + this.id + " = " + item.getId());
-			
-//			+ " WHERE " + this.id + " = " + item.getId());
+			setPreparedStatementUpdate(st, item);				
 			
 			st.executeUpdate();
 			
@@ -90,8 +89,7 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 		}
 	}
 			
-	
-	abstract protected String updateString();
+
 
 	@Override
 	public List<K> select() {
@@ -123,7 +121,7 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 	protected abstract K retrieveDatas(ResultSet rs);
 
 	protected abstract void setPreparedStatement(PreparedStatement st, K item);
-
+	
 	protected abstract void setPreparedStatementUpdate(PreparedStatement st, K item);
 
 }

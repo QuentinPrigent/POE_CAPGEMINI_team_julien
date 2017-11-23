@@ -38,6 +38,8 @@ public class Application {
     	user1.setEmail("coucou");
     	daoU.insert(user1);
     	
+    	System.out.println(user1);
+    	
 //    	daoU.delete(user1);
     	
     	user1.setFirstname("titi");

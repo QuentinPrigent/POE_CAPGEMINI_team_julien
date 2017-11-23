@@ -16,12 +16,14 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
 //	public void delete(User item) {
 //
 //	}
+	
 
 //	@Override
 //	public void update(User item) {
-//	
-//
+//		// TODO Auto-generated method stub
+//		
 //	}
+
 
 	@Override
 	public User select(User item) {
@@ -47,17 +49,16 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
 
 	@Override
 	protected void setPreparedStatement(PreparedStatement st, User item) {
-		short i = 1;
+//		short i = 1;
 		try {
-			if (item.getId() != null)  {
-				st.setString(i++, null);
-			}
-			
-			st.setString(i++, item.getFirstname());
-			st.setString(i++, item.getLastname());
-			st.setString(i++, item.getEmail());
-			st.setString(i++, item.getPassword());
-			st.setString(i++, null);
+//			if (item.getId() != null)  {
+				st.setString(1, null);
+//			}
+			st.setString(2, item.getFirstname());
+			st.setString(3, item.getLastname());
+			st.setString(4, item.getEmail());
+			st.setString(5, item.getPassword());
+			st.setString(6, null);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -93,29 +94,29 @@ public class UserDAO extends BaseDAO<User> implements IUserDAO {
 		this.id = "user_id";
 	}
 
-
-
-//	@Override
-//	protected void setPreparedStatementUpdate(PreparedStatement st, User item) {
-//		try {
-//			
-//			st.add("user_firstname = ?, "
-//					+ "user_lastname = ?, "
-//					+ "email = ?, "
-//					+ "user_password = ?, "
-//					+ "id_carrer_manager = ?");
-//			st.setString(1, item.getFirstname());
-//			st.setString(2, item.getLastname());
-//			st.setString(3, item.getEmail());
-//			st.setString(4, item.getPassword());
-//			st.setString(5, "1");
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
-
 	
 	protected String updateString() {
-		return "name=?,label=?,coucou=?,toto=?";
+		return "user_firstname = ?,"
+				+ "user_lastname = ?,"
+				+ "email = ?,"
+				+ "user_password = ?,"
+				+ "id_career_manager = ?";
+	}
+
+
+
+	@Override
+	protected void setPreparedStatementUpdate(PreparedStatement st, User item) {
+
+		try {
+			st.setString(1, item.getFirstname());
+			st.setString(2, item.getLastname());
+			st.setString(3, item.getEmail());
+			st.setString(4, item.getPassword());
+			st.setString(5, null);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		
 	}
 }
