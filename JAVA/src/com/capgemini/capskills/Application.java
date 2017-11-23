@@ -1,11 +1,16 @@
 package com.capgemini.capskills;
 
+import java.util.Arrays;
 import java.util.List;
 
+
 import com.capgemini.capskills.dao.SkillDAO;
+import com.capgemini.capskills.dao.SkillTypeDAO;
 //import com.capgemini.capskills.dao.ProjectDAO;
 import com.capgemini.capskills.dao.UserDAO;
 import com.capgemini.capskills.entities.Skill;
+import com.capgemini.capskills.entities.SkillType;
+
 //import com.capgemini.capskills.entities.Project;
 import com.capgemini.capskills.entities.User;
 import com.capgemini.capskills.exceptions.DatabaseNotReadyException;
@@ -37,12 +42,10 @@ public class Application {
     		daoU.insert(user);
 
     		System.out.println(user);
+
 		}
-   
+    	
     	User user1 = new User();
-    	user1.setFirstname("toto");
-    	user1.setEmail("coucou");
-    	daoU.insert(user1);
     	
     	System.out.println(user1);
     	
@@ -55,11 +58,14 @@ public class Application {
 //    	InputManager.createUser();
 
 
+
     	System.out.println("---------------------------------");
 
     	List<User> users = daoU.select();
     	for (User user2 : users) {
 			System.out.println(user2);
+			
+			
 		}
     	
     	

@@ -41,6 +41,7 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 			setPreparedStatement(st, item);
 
 			st.executeUpdate();
+			
 
 			ResultSet rs = st.getGeneratedKeys();
 			if (rs.next()) {
@@ -53,21 +54,28 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 		return item;
 	}
 
-
+	
 	
 	@Override
 	public void delete(K item) {
 		try {
 			PreparedStatement st = DatabaseManager.conn().prepareStatement(
+
 					"DELETE FROM " + this.tableName + " WHERE " + this.id + " = " + item.getId());
 			
+
 			st.executeUpdate();
 			
 		} catch (DatabaseNotReadyException | SQLException e) {
 			e.printStackTrace();
 		}
 	}	
-
+	protected String getIdColumnName() {
+		return this.tableName + "_id";
+	}
+	
+	
+	
 //	UPDATE Customers
 //	SET ContactName='Juan'
 //	WHERE Country='Mexico';
@@ -79,11 +87,13 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 		
 		try {
 			PreparedStatement st = DatabaseManager.conn().prepareStatement(
+
 					"UPDATE " + this.tableName + " SET " + this.updateString() +
 					" WHERE " + this.id + " = " + item.getId());
 					
 			setPreparedStatementUpdate(st, item);				
 			
+
 			st.executeUpdate();
 			
 		} catch(DatabaseNotReadyException | SQLException e) {
@@ -91,7 +101,6 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 		}
 	}
 			
-
 
 	@Override
 	public List<K> select() {
@@ -104,7 +113,7 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 			try (PreparedStatement st = conn.prepareStatement("SELECT * FROM "
 					+ DatabaseManager.DATABASE_NAME + "." + this.tableName)) {
 				ResultSet rs = st.executeQuery();
-
+				// SELECT * FROM capskill.skill_type
 				while (rs.next()) {
 
 					result.add(retrieveDatas(rs));
@@ -121,6 +130,7 @@ public abstract class BaseDAO<K extends BaseEntity> implements IBaseDAO<K> {
 	}
 
 
+	/** Converts data from database to model object (SkillType/USer/...). */
 	protected abstract K retrieveDatas(ResultSet rs);
 
 	protected abstract void setPreparedStatement(PreparedStatement st, K item);
